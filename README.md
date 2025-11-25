@@ -64,3 +64,9 @@ Selenium, Nunit, Extent Report, AzureDevops, RestSharp
 
 SQL, AzureDevops (Blob-Containers, Storage Browser)
 
+### Note
+1. All connection strings and password are encrypted.
+2. Common Automation Project Nuget is required.
+3. Make sure before running the suite user have database access where the dynamic Input files are placed.
+4. To control the script, User can manipulate data in the Isolated dynamic input files. (No need to commit the code)
+
