@@ -1,0 +1,19 @@
+{
+  "dev": {
+    "hl": "https://creditcoachdevelopmentui.azurewebsites.net/hl-registration",
+    "spl": "https://creditcoachdevelopmentui.azurewebsites.net/spl-registration?websource=SPLCampaign1",
+    "normal": "https://creditcoachdevelopmentui.azurewebsites.net/",
+    "agent": "https://creditcoachdevelopmentagentui.azurewebsites.net/portal/dashboard",
+    "login": "https://creditcoachdevelopmentui.azurewebsites.net/login",
+    "branch": "https://creditcoachdevelopmentui.azurewebsites.net/branch?"
+  },
+
+  "preprod": {
+    "hl": "https://app-scs-ui-preprod-001.azurewebsites.net/hl-registration",
+    "spl": "https://app-scs-ui-preprod-001.azurewebsites.net/spl-registration?websource=SPLCampaign1",
+    "normal": "https://app-scs-ui-preprod-001.azurewebsites.net/",
+    "agent": "https://app-scs-agent-ui-preprod-001.azurewebsites.net/portal/dashboard",
+    "login": "https://app-scs-ui-preprod-001.azurewebsites.net/login",
+    "branch": "https://app-scs-ui-preprod-001.azurewebsites.net/branch?"
+  }
+}

@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestResources\api-client-ppe.new 5.pfx" />
+    <EmbeddedResource Include="TestResources\**\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestResources\API_Certificate\api-client-ppe.new 5.pfx" />
+  </ItemGroup>
+
+  <ItemGroup>
+   <PackageReference Include="Azure.Identity" Version="1.13.2" />
+   <PackageReference Include="Azure.Monitor.Query" Version="1.6.0" />
+   <PackageReference Include="IDM.DigiTech.Platform.Common.Automation" Version="3.4.7" />
+   <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+   <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="3.0.3" />
+   <PackageReference Include="NLog" Version="5.4.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.7.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestResources\Image\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="TestResources\AppInsights.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TestResources\Collections.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TestResources\Database.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TestResources\TestData\testsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="TestResources\Url.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

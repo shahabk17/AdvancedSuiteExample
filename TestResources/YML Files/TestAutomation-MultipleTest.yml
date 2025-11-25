@@ -1,0 +1,114 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - none
+
+pool:
+  name: Azure Pipelines
+  vmImage: windows-2022
+
+variables:
+  ReportPath: "$(Build.SourcesDirectory)\\ExtentReport_$(date +%Y-%m-%d-%H-%M-%S)"
+
+parameters:
+  - name: Environment
+    displayName: "Select Environment"
+    type: string
+    default: preprod
+    values:
+      - dev
+      - preprod
+
+  - name: Threads
+    displayName: "Select Number of Threads"
+    type: string
+    default: '4'
+    values:
+    - '4'
+    - '5'
+    - '6'
+
+  - name: isSecurityQuestionsSpoofed
+    displayName: "Is spoofing ON for security questions?"
+    type: string
+    default: "true"
+    values:
+    - "true"
+    - "false"
+    
+jobs:
+  - job: RunTests
+    displayName: "Run Tests $(TestCategories)"
+
+    steps:
+     - task: UseDotNet@2
+       displayName: 'Install .NET Core SDK'
+       inputs:
+         packageType: 'sdk'
+         version: '8.x'
+         performMultiLevelLookup: true
+      
+     - task: PowerShell@2
+       displayName: "Replace variables in properties"
+       inputs:
+         targetType: 'inline'
+         script: |
+          # Read the content of the test settings JSON file
+          $testSettingsFilePath = "$(Build.SourcesDirectory)/TestResources/TestData/testsettings.json"
+          $testSettingsContent = Get-Content -Raw -Path $testSettingsFilePath
+        
+          # Replace the field values
+          $testSettingsContent = $testSettingsContent -replace '#{environment}#', '${{ parameters.Environment }}'
+          $testSettingsContent = $testSettingsContent -replace '#{folderName}#', ('$(ReportPath)' -replace '\\', '\\')
+          
+          # Save the updated content back to the file
+          $testSettingsContent | Set-Content -Path $testSettingsFilePath
+        
+          Write-Host "Field values updated successfully."/
+
+          # Read the Usings.cs file and replace LevelOfParallelism
+          $usingsFilePath = "$(Build.SourcesDirectory)/Usings.cs"
+          $usingsContent = Get-Content -Raw -Path $usingsFilePath
+         
+          Write-Host "========== Usings.cs before update =========="
+          Write-Host $usingsContent
+
+          # Replace the old LevelOfParallelism value with the new one
+          $threads = "${{ parameters.Threads }}" 
+          $usingsContent = $usingsContent -replace 'LevelOfParallelism\(\d+\)', "LevelOfParallelism($threads)"
+          $usingsContent | Set-Content -Path $usingsFilePath
+
+          Write-Host "========== Usings.cs after update =========="
+          Write-Host $usingsContent
+
+          Write-Host "LevelOfParallelism value updated to $threads."
+          Write-Host "ReportPath - " $(ReportPath)
+
+     - task: DotNetCoreCLI@2
+       displayName: Restore
+       inputs:
+         command: "restore"
+         projects: "**/*.csproj"
+         feedsToUse: "select"
+         vstsFeed: "377fac7e-332d-4298-8b03-f75e3258c8ef"
+
+     - task: DotNetCoreCLI@2
+       inputs:
+         command: 'test'
+         projects: '**/*.csproj'
+         arguments: '--filter $(TestCategories) --no-restore'
+       displayName: "Run Selected Test Cases"
+       condition: succeededOrFailed()
+       continueOnError: true
+
+     - task: PublishPipelineArtifact@1
+       inputs:
+         targetPath: "$(ReportPath)/"
+         artifact: "ExtentReport"
+         publishLocation: "pipeline"
+
+    condition: succeededOrFailed()
+    continueOnError: true

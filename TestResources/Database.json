@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "source=": "sqldb-scs-dev-01.database.windows.net",
+    "userid": "lng_azure",
+    "password": "wsH398rq4cm8",
+    "dbotp_connectionstring": "Gdwd Vrxufh = vtoge-vfv-ghy-01.gdwdedvh.zlqgrzv.qhw;Gdwdedvh=FuhglwFrdfk-RWS;Xvhu LG=oqj_dcxuh;Sdvvzrug=zvK398ut4fp8;",
+    "db_connectionstring": "Gdwd Vrxufh = vtoge-vfv-ghy-01.gdwdedvh.zlqgrzv.qhw;Gdwdedvh=FuhglwFrdfk;Xvhu LG=oqj_dcxuh;Sdvvzrug=zvK398ut4fp8;",
+    "blobstorage_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=vwvfvgdwd001;DffrxqwNhb=6pYGHFMKCv3F+XJSQ+vmdeBMWkwX2eSXtcwa+3POVCp9KGQFksslvMA+kvgqrsaeiOjYKrTGRlavB3bWlBpuET==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "storagebrowser_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=dvdhafrpporjghy;DffrxqwNhb=R3Q8vHyQIP3cATLtUBclrlj5nBXqQmo38DWP6VpGMozXY7OL2/6nP30J0RyrGdwkbjO3ZXTuPiDS+DVw6XOdED==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "storagebrowserotp_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=rwsvghy01;DffrxqwNhb=6S/+QUAPRYgbyyxA7iO1fNz9x7iP5EFKTUwS74MZZ1OfhMhJTDXLVf/GTSHQaR+Y65Fz5C09wg5M+DVwkwIuVT==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "sapistoragebrowser_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=vdslghy001;DffrxqwNhb=kYGcLcyL0rAKfvSYiu+OW6jFKq+GfDZ+gzKCbcTqEIE4+uksSDd8L5Tm3xEKAc7tmITk+BQ+BJGN+DVwtvr6oz==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "db_connectionstring_CCFunction": "Gdwd Vrxufh = vtoge-vfv-ghy-01.gdwdedvh.zlqgrzv.qhw;Gdwdedvh=FuhglwFrdfk-Ixqfwlrqv;Xvhu LG=oqj_dcxuh;Sdvvzrug=zvK398ut4fp8;"
+  },
+  "preprod": {
+    "Source": "sqldb-scs-preprod-01.database.windows.net",
+    "userid": "lng_azure",
+    "password": "yTW78j7TKhzF",
+    "dbotp_connectionstring": "Gdwd Vrxufh = vtoge-vfv-suhsurg-01.gdwdedvh.zlqgrzv.qhw;Gdwdedvh=FuhglwFrdfk-RWS;Xvhu LG=oqj_dcxuh;Sdvvzrug=bWZ78m7WNkcI;",
+    "db_connectionstring": "Gdwd Vrxufh = vtoge-vfv-suhsurg-01.gdwdedvh.zlqgrzv.qhw;Gdwdedvh=FuhglwFrdfk;Xvhu LG=oqj_dcxuh;Sdvvzrug=bWZ78m7WNkcI;",
+    "blobstorage_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=vwvfvgdwd001;DffrxqwNhb=6pYGHFMKCv3F+XJSQ+vmdeBMWkwX2eSXtcwa+3POVCp9KGQFksslvMA+kvgqrsaeiOjYKrTGRlavB3bWlBpuET==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "storagebrowser_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=dvdhafrpporjvwrudjhssh;DffrxqwNhb=6uRSPb/CJkhT174GahSnu3EJMcTuDJauml9Z7DBeLGYB8c1xB+Itk500IV0Djb5QgIRW3Tzq9l9s+DVwz0sIiz==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "storagebrowserotp_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=rwsvsuhsurgvd01;DffrxqwNhb=E9vgWKpON7cCSvSr20S8bIIcdv5pET/pbMK0m2CzzuCW43s7VYj5SM4tCRH0T9ToAn7gDeWM0sYD+DVws/tf7j==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "sapistoragebrowser_connectionstring": "GhidxowHqgsrlqwvSurwrfro=kwwsv;DffrxqwQdph=vdslsuhsurg001;DffrxqwNhb=dyPzSTcYyRKjGb1CbEIbkdKAWZt+CvZmVOF+TA9fgbU3IjKh2bwzUQ2wKON0p3YudBg4/leeO5kA+DVwlAo33T==;HqgsrlqwVxiila=fruh.zlqgrzv.qhw",
+    "db_connectionstring_CCFunction": "Gdwd Vrxufh = vtoge-vfv-suhsurg-01.gdwdedvh.zlqgrzv.qhw;Gdwdedvh=FuhglwFrdfk-Ixqfwlrqv;Xvhu LG=oqj_dcxuh;Sdvvzrug=bWZ78m7WNkcI;"
+  } 
+}

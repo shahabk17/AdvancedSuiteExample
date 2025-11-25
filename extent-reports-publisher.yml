@@ -1,0 +1,44 @@
+﻿trigger: none
+
+parameters:
+- name: ReleaseId
+  type: string
+  default: ''
+
+pool:
+  name: Azure-Windows-2022-v2
+
+steps:
+- powershell: |
+    Write-Host "Build Pipeline Started"
+    Write-Host "ReleaseId parameter: ${{ parameters.ReleaseId }}"
+    
+    # Use the CORRECT path where release pipeline creates reports
+    $reportPath = "C:\a\r1\a\ExtentReport_${{ parameters.ReleaseId }}\"
+    Write-Host "Looking for reports at: $reportPath"
+    
+    if (Test-Path $reportPath) {
+        Write-Host "✅ Reports found! Publishing..."
+        
+        # List all files
+        Get-ChildItem -Path $reportPath -Recurse | ForEach-Object {
+            Write-Host "📄 $($_.FullName)"
+        }
+        
+        # Publish as artifact
+        Write-Host "##vso[artifact.upload containerfolder=ExtentReports;artifactname=ExtentReports]$reportPath"
+        Write-Host "✅ Reports published successfully!"
+        
+    } else {
+        Write-Host "❌ No reports found at: $reportPath"
+        Write-Host "Available drives and directories:"
+        Get-PSDrive -PSProvider FileSystem | ForEach-Object {
+            Write-Host "   Drive $($_.Name): $($_.Root)"
+            if (Test-Path $_.Root) {
+                Get-ChildItem -Path $_.Root -Directory -ErrorAction SilentlyContinue | Where-Object { $_.Name -like "*ExtentReport*" } | ForEach-Object {
+                    Write-Host "     📁 $($_.FullName)"
+                }
+            }
+        }
+    }
+  displayName: 'Publish Extent Reports'

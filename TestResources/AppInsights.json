@@ -1,0 +1,30 @@
+{
+  "dev": {
+    "platform_appinsight": {
+      "apiUrl": "https://api.applicationinsights.io/v1/apps/805f8017-c11c-43cb-870c-e9a6a1b4df76/query?timespan=P1D&query=",
+      "header": "l4ahm3tacu0tnthu70n6gyze0ujlx8ik4pyv0dkq"
+    },
+    "tracking_appinsight": {
+      "apiUrl": "https://api.applicationinsights.io/v1/apps/a0a76383-9cc3-4aa3-8693-284b5eafc757/query?timespan=P1D&query=",
+      "header": "ix6o0letrbwz0hv87y7takghbhrhdldz3ht7ldvj"
+    },
+    "password_appinsight": {
+      "apiUrl": "https://api.applicationinsights.io/v1/apps/656768df-cd9c-48b9-901d-ae3908d8c6dc/query?timespan=P1D&query=",
+      "header": "qj2ype8qzm4s2ba0nef1zw2lv7f83fjm376gwhyf"
+    }
+  },
+  "preprod": {
+    "platform_appinsight": {
+      "apiUrl": "https://api.applicationinsights.io/v1/apps/46efd8bc-2f8c-4fd4-ba5c-c3a46bc7544d/query?timespan=P1D&query=",
+      "header": "7ofx37itzldvikw7abmkrut83ramnznmxmuktabo"
+    },
+    "tracking_appinsight": {
+      "apiUrl": "https://api.applicationinsights.io/v1/apps/bd158c0f-624f-4fd1-84d8-dbacf1fa1284/query?timespan=P1D&query=",
+      "header": "ix6o0letrbwz0hv87y7takghbhrhdldz3ht7ldvj"
+    },
+    "password_appinsight": {
+      "apiUrl": "https://api.applicationinsights.io/v1/apps/9acda32c-85cf-4ffe-8a6f-f1bd436027bc/query?timespan=P1D&query=",
+      "header": "ferpzic18siewshhzxdwni7vmn5bu3kfypi7a8mz"
+    }
+  }
+}

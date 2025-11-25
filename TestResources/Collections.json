@@ -1,0 +1,47 @@
+{
+  "dev": {
+    "api": {
+      "ooba": "https://func-scs-dev-001.azurewebsites.net/api/CreateUserFromLead",
+      "spl": "https://func-scs-dev-001.azurewebsites.net/api/CreateUserFromLead",
+      "spl-ivr": "https://func-scs-dev-001.azurewebsites.net/api/CreateUserFromIvrLead",
+      "macron": "https://apim-idmservice-dev.azure-api.net/scs-credit-insights/v1/EligibleCreditProductsFunction",
+      "sanlam_online": "https://apim-idmservice-dev.azure-api.net/scs-credit-insights/v1/GetCreditScoreAndRiskDetailFunction",
+      "apim_certificate": "https://apim-idmservice-dev.azure-api.net",
+      "apim_autoreg": "https://apim-idmservice-dev.azure-api.net/auto-registration/v1/CreateUserFromLead"
+    },
+    "header": {
+      "ooba": "exiDJ4WZu6e5Z32xFn0HaEjzjrS5vUFOMPRu6uGznVbEK6PaT1Mz0j==",
+      "spl": "noeWA1YovNPhV2L0mQjVyD5Vdy5Q8YGTB3/dcTA3Uxky7S5xcM/5Rj==",
+      "spl-ivr": "7GegSlrt/S4KMtaHUtU4S4DShG660dMaz7qP1QujYPsZCKnGOWilWT==",
+      "blueoaks": "g2d0597423gd49g8e4367gdfi45458f7",
+      "macron": "ii4h764g6geg47168hh18fd2i4482fhg",
+      "sanlam_online": "ii4h764g6geg47168hh18fd2i4482fhg",
+      "ooba_new": "e037he3dh69d4d279h8914d15i3iged4",
+      "lifecheq": "09ge4f5803d3494g89eg5i96if248433",
+      "apim_certificate": "qmQPcw8jhwGaH6UW2Amcn_ZSsk9xYOSZ8QfN._S4"
+    }
+  },
+
+  "preprod": {
+    "api": {
+      "ooba": "https://func-cc-preprod-001.azurewebsites.net/api/CreateUserFromLead",
+      "spl": "https://func-cc-preprod-001.azurewebsites.net/api/CreateUserFromLead",
+      "spl-ivr": "https://func-cc-preprod-001.azurewebsites.net/api/CreateUserFromIvrLead",
+      "macron": "https://apim-idmservice-ppe.azure-api.net/scs-credit-insights/v1/EligibleCreditProductsFunction",
+      "sanlam_online": "https://apim-idmservice-ppe.azure-api.net/scs-credit-insights/v1/GetCreditScoreAndRiskDetailFunction",
+      "apim_certificate": "https://apim-idmservice-ppe.azure-api.net",
+      "apim_autoreg": "https://apim-idmservice-ppe.azure-api.net/auto-registration/v1/CreateUserFromLead"
+    },
+    "header": {
+      "ooba": "VdUCRCUw6dNgeFXP8KQmqKL83r36FF/NjeNdXK968gcPOm7OPBbAbz==",
+      "spl": "79rc01ugtx5ENyaWF6n9FUY/h5UrVrlR0AWb8WmmbD3h5OP8eD4wXT==",
+      "spl-ivr": "IUXSxBuQXyBrS9TMirwRhJxsNtSQyjHY7g8qF6jFwdQG8ociXs/7vT==",
+      "macron": "3die5992276d4e13e5fi99518d651e4e",
+      "sanlam_online": "hi3gf76935ge40g0eid4efhf40053e00",
+      "blueoaks": "6gi4fi56978d45i3eg81hgg031i0g32d",
+      "ooba_new": "77dd522fh94i48649geg7392d86h67d8",
+      "lifecheq": "hi3gf76935ge40g0eid4efhf40053e00",
+      "apim_certificate": "qmQPcw8jhwGaH6UW2Amcn_ZSsk9xYOSZ8QfN._S4"
+    }
+  }
+}

@@ -1,0 +1,181 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  - none
+
+pool:
+  name: Azure Pipelines
+  vmImage: windows-2022
+
+variables:
+  ReportPath: "$(Build.SourcesDirectory)\\ExtentReport_$(date +%Y-%m-%d-%H-%M-%S)"
+
+parameters:
+  - name: Environment
+    displayName: "Select Environment"
+    type: string
+    default: preprod
+    values:
+      - dev
+      - preprod
+
+  - name: Tests
+    displayName: TestCases
+    type: string
+    default: CC1845_PreventSameIDNumberFromAttemptingRegistrationtwice
+    values:
+    - CC1845_PreventSameIDNumberFromAttemptingRegistrationtwice
+    - CC1911_AgentUi
+    - CC1914_ForgotPasswordPage
+    - CC1916_NewUserJourney
+    - CC2093_SPLRegistrationJourney
+    - CC3088_NewLMS_RegistrationInactiveSPLAutoreg
+    - CC3185_LMSOnSanlamCreditSolutionPlatform
+    - CC3214_AutoRegistrationProcess
+    - CC3244_NewLMS_RegistrationBudgetingAdvice
+    - CC3245_NewLMS_RegistrationNoneCoaching
+    - ValidateLMS_RegistrationFailedSecurityQuestions_RegistrationInactiveSPLIVRAutoreg
+    - ValidateRegistrationFailedOTP_NewLMS_RegistrationInactiveSPLAutoreg
+    - ValidateRegistrationInactiveSPL_NewLMS_RegistrationInactiveSPLAutoreg
+    - ValidateRegistrationInactiveSP_NewLMS_RegistrationInactiveSPLIVRAutoreg
+    - ValidateLMS_RegistrationInactiveForOOBA_NewLMS_RegistrationInactiveOOBAAutoreg
+    - CC3288_CreditScore
+    - CC2036_CC2029_UpdateWealthScore
+    - CC2186_WealthScoreCalculation
+    - CC2009_CC2033_BudgetScoreCalculation
+    - CC_FAQPage 
+    - CC_AllDashboardButtons
+    - CC_InsightsForYou
+    - CC_CreditInsightsPageButtons 
+    - CC_HowYouMeasureUpScale 
+    - CC2113_CreditScoreTrend
+    - CC_FactorsAffectingYourScore
+    - CC2748_YourCreditSummary
+    - CC_CreditAccountPageTabs
+    - ADO13374_SanlamPersonalLoanTile 
+    - ADO13375_CapfinPersonalLoanTile 
+    - ADO13643_CreditCardAndMobiCredTile 
+    - ADO13644_CreditConsolidationTile 
+    - ADO13376_PersonalLoanFinance27Tile 
+    - ADO13645_StorecardTrueworthAndIdentityTile
+    - ADO14720_TrackingOfDashboardPageElements
+    - ADO14721_TrackingOfSolutionPageElements
+    - ADO14722_TrackingOfCreditInsightPageElements
+    - ADO14723_TrackingOfCreditAccountsPageElements
+    - ADO14724_TrackingOfBankAccountsPageElements
+    - ADO14725_TrackingOfBudgetPageElements
+    - ADO14726_TrackingOfProfilePageElements
+    - ADO14727_TrackingOfFAQsPageElements
+    - ADO14728_TrackingOfSettingsPageElements
+    - ADO15154_HealthTile
+    - ADO15156_FinancialPlanning
+    - ADO15155_SaveMoneyTile
+    - CC10907_Agent_CustomerDashboardUiAndResponse
+    - CC10908_Agent_UpdateCreditHistory
+    - CC10906_Agent_LogAndVerifyCommLogDetails
+    - CC15159_BranchRegistration
+    - CC15157_OOBA_HomeLoan
+    - CC15158_OOBA_HomeLoanAdvance
+    - ADO16689_MacronAPI
+    - ADO16776_MacronAPITesting
+    - CC16127_BranchLMSInsert_ZeroTakeHomeSalaryAndRegisterCounselling
+    - CC16127_BranchLMSInsert_NonCoachingRegistration
+    - CC16127_BranchLMSInsert_PersonalLoan
+    - CC17111_NewAutoRegMacron
+    - CC17113_MacronAutoRegAPITesting
+    - CC17112_NewAutoRegBlueoaks
+    - CC17114_BlueoaksAutoRegAPITesting
+    - CC17349_NewAutoRegOOBA
+    - CC17351_OOBAAutoRegAPITesting
+    - CC17360_NewAutoRegLifecheq
+    - CC17361_LifecheqAutoRegAPITesting
+    - CC17658_SanlamOnlineAPI
+    - CC17659_SanlamOnlineAPITesting
+    - CC10901_Agent_UJC_Registration_Campaign
+    - CC10901_Agent_UJC_Registration_Campaign_WithoutLandingPageURL
+    - CC10901_Agent_UJC_Registration_Campaign_WithoutIdNumber
+  
+  - name: Threads
+    displayName: "Select Number of Threads"
+    type: string
+    default: '4'
+    values:
+    - '4'
+    - '5'
+    - '6'
+
+jobs:
+  - job: RunTests
+    displayName: "Run Test: ${{ parameters.Tests }}"
+
+    steps:
+     - task: UseDotNet@2
+       displayName: 'Install .NET Core SDK'
+       inputs:
+         packageType: 'sdk'
+         version: '8.x'
+         performMultiLevelLookup: true
+      
+     - task: PowerShell@2
+       displayName: "Replace variables in properties"
+       inputs:
+        targetType: 'inline'
+        script: |
+         # Read the content of the test settings JSON file
+         $testSettingsFilePath = "$(Build.SourcesDirectory)/TestResources/TestData/testsettings.json"
+         $testSettingsContent = Get-Content -Raw -Path $testSettingsFilePath
+        
+         # Replace the field values
+         $testSettingsContent = $testSettingsContent -replace '#{environment}#', '${{ parameters.Environment }}'
+         $testSettingsContent = $testSettingsContent -replace '#{folderName}#', ('$(ReportPath)' -replace '\\', '\\')
+         # Save the updated content back to the file
+         $testSettingsContent | Set-Content -Path $testSettingsFilePath
+        
+         Write-Host "Field values updated successfully."
+
+          # Read the Usings.cs file and replace LevelOfParallelism
+         $usingsFilePath = "$(Build.SourcesDirectory)/Usings.cs"
+         $usingsContent = Get-Content -Raw -Path $usingsFilePath
+         
+         Write-Host "========== Usings.cs before update =========="
+         Write-Host $usingsContent
+
+         # Replace the old LevelOfParallelism value with the new one
+         $threads = "${{ parameters.Threads }}" 
+         $usingsContent = $usingsContent -replace 'LevelOfParallelism\(\d+\)', "LevelOfParallelism($threads)"
+         $usingsContent | Set-Content -Path $usingsFilePath
+
+         Write-Host "========== Usings.cs after update =========="
+         Write-Host $usingsContent
+
+         Write-Host "LevelOfParallelism value updated to $threads."
+         Write-Host "ReportPath - " $(ReportPath)
+
+     - task: DotNetCoreCLI@2
+       displayName: Restore
+       inputs:
+        command: "restore"
+        projects: "**/*.csproj"
+        feedsToUse: "select"
+        vstsFeed: "377fac7e-332d-4298-8b03-f75e3258c8ef"
+
+     - task: DotNetCoreCLI@2
+       inputs:
+        command: 'test'
+        projects: '**/*.csproj'
+        arguments: '--filter Category=${{ parameters.Tests }} --no-restore'
+       displayName: "Run Selected Test Cases"
+       condition: succeededOrFailed()
+       continueOnError: true
+
+     - task: PublishPipelineArtifact@1
+       inputs:
+        targetPath: "$(ReportPath)/${{ parameters.Tests }}/"
+        artifact: "ExtentReport"
+        publishLocation: "pipeline"
+
+    condition: succeededOrFailed()
+    continueOnError: true
