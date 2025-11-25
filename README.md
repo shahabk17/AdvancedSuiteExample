@@ -58,7 +58,7 @@ C#
 
 ### Tools
 
-Selenium, Nunit, Extent Report, AzureDevops, RestSharp
+Selenium, Nunit, Extent Report, AzureDevops, RestSharp, WinAppDriver (For Desktop and Mobile Application)
 
 ### Database
 
