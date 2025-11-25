@@ -36,9 +36,9 @@ The project is related to the regression test cases of Sanlam and number of test
   1. ADO13644_CreditConsolidationTile 
   1. ADO13376_PersonalLoanFinance27Tile 
 
-In this test cases inputs are present in [automation-countainer](https://portal.azure.com/#view/Microsoft_Azure_Storage/ContainerMenuBlade/~/overview/storageAccountId/%2Fsubscriptions%2Fa0a76383-9cc3-4aa3-8693-284b5eafc757%2FresourceGroups%2FRG-SCS-PREPROD-001%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fstscsdata001/path/automation-container/etag/%220x8DC522F22AC37A0%22/defaultEncryptionScope/%24account-encryption-key/denyEncryptionScopeOverride~/false/defaultId//publicAccessVal/None) file and derived from their and having same name as the test class name (test case name). After test run project uses extent report for reporting the test results and its steps screenshot.
+In this test cases inputs are present in [automation-countainer](https://portal.azure.com/)(random container url in example) file and derived from their and having same name as the test class name (test case name). After test run project uses extent report for reporting the test results and its steps screenshot.
 
-Repos are using to store the code in it. Link of Sanlam Repo for Auto regression Test Project [Test Code Repo](https://dev.azure.com/IDMDebtBusters/_git/IDM.DigiTech.Platforms.SCS) 
+Repos are using to store the code in it. Link of Sanlam Repo for Auto regression Test Project [Test Code Repo](https://dev.azure.com/) (random repo)
 
 ## Folder Structure
 
